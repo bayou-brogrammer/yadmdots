@@ -1,0 +1,6 @@
+[submodule "/Users/jacoblecoq/.config/zsh"]
+	path = /Users/jacoblecoq/.config/zsh
+	url = https://github.com/bayou-brogrammer/zdotdir
+[submodule "/Users/jacoblecoq/.config/nvim"]
+	path = /Users/jacoblecoq/.config/nvim
+	url = https://github.com/bayou-brogrammer/nvim
