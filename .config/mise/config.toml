@@ -1,0 +1,8 @@
+[tools]
+go = "latest"
+neovim = "latest"
+node = "latest"
+"npm:prettier" = "latest"
+uv = "latest"
+yamlfmt = "latest"
+zig = "latest"

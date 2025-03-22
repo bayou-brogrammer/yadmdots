@@ -1,0 +1,3 @@
+.ssh/*.key
+.ssh/*.pem
+.ssh/*_rsa
