@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+mkdir -p ~/Developer
+touch ~/Developer/.metadata_never_index

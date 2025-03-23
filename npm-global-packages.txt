@@ -1,0 +1,5 @@
+/Users/jacoblecoq/.local/share/mise/installs/node/23.9.0/lib
+├── @anthropic-ai/claude-code@0.2.37
+├── corepack@0.32.0
+└── npm@11.2.0
+

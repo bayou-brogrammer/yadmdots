@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+YADM_SCRIPTS=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../scripts" &>/dev/null && pwd)
+
+source "${YADM_SCRIPTS}/colors.sh"
+
+sudo softwareupdate -i -a
+# The Xcode Command Line Tools includes git and make (not available on stock macOS)
+if ! command -v git >/dev/null; then
+  xcode-select --install
+fi
+if [[ $(uname -m) == 'arm64' ]]; then
+  sudo softwareupdate --install-rosetta --agree-to-license
+fi
+
+# install homebrew if it's missing
+if ! command -v brew >/dev/null 2>&1; then
+  printf "${YELLOW}%s${NC}\n" "Installing homebrew"
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+
+if [ -f "${HOME}/.Brewfile" ]; then
+  printf "${YELLOW}%s${NC}\n" "Updating homebrew bundle"
+  brew bundle --global || printf "${RED}%s${NC}\n" "Failed to install packages"
+fi
+
+if [[ ! -f ${HOME}/.fzf.zsh ]]; then
+  printf "${YELLOW}%s${NC}\n" "Installing FZF scripts"
+  $(brew --prefix fzf)/install --no-update-rc --completion --key-bindings
+fi
+
+mise use --global --yes cargo-binstall
