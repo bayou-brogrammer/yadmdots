@@ -143,7 +143,8 @@
         "~/.local/share/nvim/mason"
     ],
     "[markdown]": {
-        "editor.unicodeHighlight.invisibleCharacters": true
+        "editor.unicodeHighlight.invisibleCharacters": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[plaintext]": {
         "editor.unicodeHighlight.invisibleCharacters": true
@@ -248,5 +249,7 @@
     "geminicodeassist.inlineSuggestions.enableAuto": false,
     "[shellscript]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
-    }
+    },
+    "cursor.composer.shouldChimeAfterChatFinishes": true,
+    "cursor.composer.shouldAllowCustomModes": true
 }

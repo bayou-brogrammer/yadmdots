@@ -1,0 +1,46 @@
+# FZF Configuration
+
+RG_COMMAND="rg --files --hidden" # respects ignore files by default
+FIND_FILTER="-path ./.git -prune -o " # ignore git folder
+FALLBACK_COMMAND="find . $FIND_FILTER -print" # use find as a fallback
+
+## FZF Commands
+FZF_DEFAULT_COMMAND=$RG_COMMAND
+FZF_DEFAULT_COMMAND+="|| $FALLBACK_COMMAND"
+FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+FZF_ALT_C_COMMAND="rg --files --null | xargs -0 dirname | sort -u"
+
+## FZF common options
+FZF_DEFAULT_OPTS='--layout=reverse --info=inline --multi '
+
+# preview script
+FZF_DEFAULT_OPTS+="--preview 'preview.sh {} | head -200' --preview-window hidden "
+
+# help menu
+FZF_DEFAULT_OPTS+="--header '[F1 preview] [F2 all files] [F3 fzf ../]' "
+
+# F1 - preview file
+FZF_DEFAULT_OPTS+="--bind 'f1:toggle-preview' "
+
+# apply common options to other modes
+FZF_ALT_C_OPTS="$FZF_DEFAULT_OPTS"
+FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS"
+
+## FZF specific options
+
+# F2 - show ignored files (.git, node_modules, target, ...)
+FZF_DEFAULT_OPTS+="--bind 'f2:reload($RG_COMMAND --no-ignore || $FALLBACK_COMMAND)' "
+FZF_ALT_C_OPTS+="--bind 'f2:reload(find . -type d)' "
+
+# F3 - fuzzy find parent folder, and show ignored files
+FZF_DEFAULT_OPTS+="--bind 'f3:reload($RG_COMMAND --no-ignore ../ || find ../ $FIND_FILTER -print)' "
+FZF_ALT_C_OPTS+="--bind 'f3:reload(find ../ -type d)' "
+
+# export command and options to env
+export FZF_DEFAULT_COMMAND
+export FZF_CTRL_T_COMMAND
+export FZF_ALT_C_COMMAND
+export FZF_DEFAULT_OPTS
+export FZF_CTRL_T_OPTS
+export FZF_ALT_C_OPTS
+

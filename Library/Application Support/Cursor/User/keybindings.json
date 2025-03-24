@@ -18,5 +18,9 @@
   {
     "key": "shift+cmd+t shift+cmd+s",
     "command": "typescript.sortImports"
+  },
+  {
+    "key": "cmd+i",
+    "command": "composerMode.agent"
   }
 ]

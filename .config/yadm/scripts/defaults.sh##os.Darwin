@@ -215,17 +215,17 @@ defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 defaults write com.googlecode.iterm2 ShowFullScreenTabBar -bool true
 
 # Set font to MesloLGS NF Regular 14px
-/usr/libexec/PlistBuddy -c "Set 'New Bookmarks':0:'Normal Font' MesloLGS-NF-Regular 14" ~/Library/Preferences/com.googlecode.iTerm2.plist
-/usr/libexec/PlistBuddy -c "Set 'New Bookmarks':0:'Non Ascii Font' MesloLGS-NF-Regular 14" ~/Library/Preferences/com.googlecode.iTerm2.plist
+# /usr/libexec/PlistBuddy -c "Set 'New Bookmarks':0:'Normal Font' MesloLGS-NF-Regular 14" ~/Library/Preferences/com.googlecode.iTerm2.plist
+# /usr/libexec/PlistBuddy -c "Set 'New Bookmarks':0:'Non Ascii Font' MesloLGS-NF-Regular 14" ~/Library/Preferences/com.googlecode.iTerm2.plist
 
 # Enable title sync
-/usr/libexec/PlistBuddy -c "Set 'New Bookmarks':0:'Sync Title' 1" ~/Library/Preferences/com.googlecode.iTerm2.plist
+# /usr/libexec/PlistBuddy -c "Set 'New Bookmarks':0:'Sync Title' 1" ~/Library/Preferences/com.googlecode.iTerm2.plist
 
-# Change default window size
-/usr/libexec/PlistBuddy -c "Set 'New Bookmarks':0:'Columns' 132" ~/Library/Preferences/com.googlecode.iTerm2.plist
+# # Change default window size
+# /usr/libexec/PlistBuddy -c "Set 'New Bookmarks':0:'Columns' 132" ~/Library/Preferences/com.googlecode.iTerm2.plist
 
-# Unlimited Scrollback
-/usr/libexec/PlistBuddy -c "Set 'New Bookmarks':0:'Unlimited Scrollback' true" ~/Library/Preferences/com.googlecode.iTerm2.plist
+# # Unlimited Scrollback
+# /usr/libexec/PlistBuddy -c "Set 'New Bookmarks':0:'Unlimited Scrollback' true" ~/Library/Preferences/com.googlecode.iTerm2.plist
 
 # Add shortcuts to Dock
 defaults write com.apple.dock persistent-apps -array

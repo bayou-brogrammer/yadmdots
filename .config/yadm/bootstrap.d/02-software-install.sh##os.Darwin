@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 
-YADM_SCRIPTS=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../scripts" &>/dev/null && pwd)
-
-source "${YADM_SCRIPTS}/colors.sh"
-
 sudo softwareupdate -i -a
+
 # The Xcode Command Line Tools includes git and make (not available on stock macOS)
 if ! command -v git >/dev/null; then
   xcode-select --install
@@ -19,14 +16,18 @@ if ! command -v brew >/dev/null 2>&1; then
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
+# Install packages from Brewfile
 if [ -f "${HOME}/.Brewfile" ]; then
   printf "${YELLOW}%s${NC}\n" "Updating homebrew bundle"
   brew bundle --global || printf "${RED}%s${NC}\n" "Failed to install packages"
 fi
 
+# Install FZF
 if [[ ! -f ${HOME}/.fzf.zsh ]]; then
   printf "${YELLOW}%s${NC}\n" "Installing FZF scripts"
-  $(brew --prefix fzf)/install --no-update-rc --completion --key-bindings
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  ~/.fzf/install --no-update-rc --completion --key-bindings
 fi
 
+# Mise
 mise use --global --yes cargo-binstall
