@@ -1,0 +1,58 @@
+#!/bin/bash
+# This script detects the Linux distribution and sets the corresponding
+# installation command.
+
+# Ensure that /etc/os-release exists (most modern Linux systems have it)
+if [ -f /etc/os-release ]; then
+  # Source the file to get variables like ID and ID_LIKE
+  . /etc/os-release
+else
+  echo "Error: /etc/os-release not found. Cannot detect distribution."
+  exit 1
+fi
+
+echo "Detected distribution: $ID"
+
+# Initialize the installation command variable.
+INSTALL_CMD=""
+
+# Use a case statement to set the appropriate install command.
+case "$ID" in
+arch | endeavousos | manjaro*)
+  # Arch-based systems
+  INSTALL_CMD="sudo pacman -S"
+  ;;
+ubuntu)
+  # Ubuntu systems
+  INSTALL_CMD="sudo apt-get install"
+  ;;
+debian)
+  # Debian systems
+  INSTALL_CMD="sudo apt-get install"
+  ;;
+fedora)
+  # Fedora systems
+  INSTALL_CMD="sudo dnf install"
+  ;;
+centos | rhel)
+  # CentOS/RHEL systems
+  INSTALL_CMD="sudo yum install"
+  ;;
+opensuse* | suse)
+  # SUSE/openSUSE systems
+  INSTALL_CMD="sudo zypper install"
+  ;;
+*)
+  # If the distribution doesn't match the above, check ID_LIKE for hints.
+  if [[ "$ID_LIKE" == *"debian"* ]]; then
+    INSTALL_CMD="sudo apt-get install"
+  elif [[ "$ID_LIKE" == *"rhel fedora"* ]]; then
+    INSTALL_CMD="sudo dnf install"
+  else
+    echo "Unsupported or unrecognized distribution: $ID"
+    exit 1
+  fi
+  ;;
+esac
+
+echo "Installation command set to: $INSTALL_CMD"
