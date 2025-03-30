@@ -1,3 +1,5 @@
 .ssh/*.key
 .ssh/*.pem
 .ssh/*_rsa
+.ssh/id*
+.local/share/gnupg/.exported-keyring/*

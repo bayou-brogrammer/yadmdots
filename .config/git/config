@@ -3,7 +3,7 @@
 [user]
 name       = "Jacob L"
 email      = "lecoqjacob@gmail.com"
-signingkey = "31F6CD3A678FC7DAAD3A7AA771551441C0B32BAB"
+	signingkey = F202F52C76BD41945946C39ABEEDD67541CD1B82
 
 [core]
 pager = delta

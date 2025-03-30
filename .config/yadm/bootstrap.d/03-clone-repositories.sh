@@ -1,19 +1,20 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-# Clone ZSH repo
-if [ ! -d "$HOME/.config/zsh" ]; then
-  git clone https://github.com/${GITHUB_USER}/zsh.git "$HOME/.config/zsh"
+# Because Git submodule commands cannot operate without a work tree, they must
+# be run from within $HOME (assuming this is the root of your dotfiles)
+cd "$HOME"
 
-  echo "Updating the zsh repo origin URL"
-  git remote set-url origin "https://github.com/${GITHUB_USER}/zsh.git"
-  git remote set-url --push origin "git@github.com:${GITHUB_USER}/zsh.git"
-fi
+echo "Init submodules"
+yadm submodule update --recursive --init
 
-# Clone neovim config
-if [ ! -d "$HOME/.config/nvim" ]; then
-  git clone https://github.com/${GITHUB_USER}/nvim.git "$HOME/.config/nvim"
+echo "Updating the zdotdir repo origin URL"
+cd ~/.config/zsh
+git remote set-url origin "git@github.com:bayou-brogrammer/zdotdir.git"
 
-  echo "Updating the neovim repo origin URL"
-  git remote set-url origin "https://github.com/${GITHUB_USER}/nvim.git"
-  git remote set-url --push origin "git@github.com:${GITHUB_USER}/nvim.git"
-fi
+echo "Updating the nvim repo origin URL"
+cd ~/.config/nvim
+git remote set-url origin "git@github.com:bayou-brogrammer/nvim.git"
+
+echo "Updating the astronvim repo origin URL"
+cd ~/.config/astro-nvim/
+git remote set-url origin "git@github.com:bayou-brogrammer/nvim.git"

@@ -4,24 +4,65 @@ if command -v debconf-set-selections >/dev/null; then
   echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 fi
 
-# command -v sudo >/dev/null || apt-get install -y sudo
-# sudo apt-get install -y autojump build-essential curl file git libssl-dev make moreutils neovim software-properties-common wget
+# Setup Distribution installs
+echo "Installing Distribution Packages"
+echo $INSTALL_CMD
+sudo pacman -S --noconfirm base-devel gcc git-delta
 
-curl https://mise.jdx.dev/install.sh | sh
+if ! command -v brew >/dev/null; then
+  echo "Installing Homebrew..."
+  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# if [ ! -d ~/.oh-my-zsh ]; then
-#   # Install zsh
-#   sudo apt-get install -y zsh
-#   echo 'source ~/.zshrc.shared' >~/.zshrc
-#   zsh --version
-#   chsh -s "$(which zsh)"
-#   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-# fi
+  # Source Homebrew
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+else
+  echo "Homebrew is already installed."
+fi
 
-# if ! cat ~/.zshrc | grep 'source ~/.zshrc.shared'; then
-#   echo 'source ~/.zshrc.shared' >~/.zshrc
-# fi
+# Install fnm if not already installed
+if ! command -v fnm >/dev/null; then
+  echo "Installing fnm..."
+  curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
+else
+  echo "Fnm is already installed."
+fi
 
-# sudo add-apt-repository -y ppa:ipinfo/ppa
-# sudo apt-get update
-# sudo apt-get install -y ipinfo
+# Install mise if not already installed
+if ! command -v mise >/dev/null; then
+  echo "Installing mise..."
+  curl https://mise.jdx.dev/install.sh | sh
+else
+  echo "Mise is already installed."
+fi
+
+# Install Rust if not already installed
+if ! command -v rustc >/dev/null; then
+  echo "Installing Rust..."
+  curl https://sh.rustup.rs -sSf | sh -s -- -y
+else
+  echo "Rust is already installed."
+fi
+
+# Install Cursor
+if ! command -v cursor >/dev/null; then
+  echo "Installing Cursor..."
+  yay -S --noconfirm cursor-bin
+else
+  echo "Cursor is already installed."
+fi
+
+# Install WindSurf
+if ! command -v windsurf-next >/dev/null; then
+  echo "Installing WindSurf..."
+  yay -S --noconfirm windsurf-next
+else
+  echo "WindSurf is already installed."
+fi
+
+# install legcord
+if ! command -v legcord >/dev/null; then
+  echo "Installing legcord..."
+  yay -S --noconfirm legcord-git
+else
+  echo "legcord is already installed."
+fi

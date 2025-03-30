@@ -1,6 +1,12 @@
-[submodule "/Users/jacoblecoq/.config/zsh"]
-	path = /Users/jacoblecoq/.config/zsh
-	url = https://github.com/bayou-brogrammer/zdotdir
-[submodule "/Users/jacoblecoq/.config/nvim"]
-	path = /Users/jacoblecoq/.config/nvim
-	url = https://github.com/bayou-brogrammer/nvim
+[submodule ".config/nvim"]
+	path = .config/nvim
+	url = https://github.com/bayou-brogrammer/nvim.git
+[submodule ".config/zsh"]
+	path = .config/zsh
+	url = https://github.com/bayou-brogrammer/zdotdir.git
+[submodule ".config/yadm/bootstrap.d/nvim-astro"]
+	path = .config/yadm/bootstrap.d/nvim-astro
+	url = https://github.com/bayou-brogrammer/nvim-astro.git
+[submodule ".config/astro-nvim"]
+	path = .config/astro-nvim
+	url = https://github.com/bayou-brogrammer/nvim-astro.git
