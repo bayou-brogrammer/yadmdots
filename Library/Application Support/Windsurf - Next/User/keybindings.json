@@ -1,0 +1,21 @@
+[
+  {
+    "command": "workbench.action.toggleMaximizedPanel",
+    "key": "ctrl+alt+m",
+    "when": "!terminalFocus"
+  },
+  {
+    "command": "-workbench.action.terminal.toggleTerminal",
+    "key": "ctrl+`",
+    "when": "!terminalFocus"
+  },
+  {
+    "command": "workbench.action.terminal.toggleTerminal",
+    "key": "ctrl+alt+m",
+    "when": "terminalFocus"
+  },
+  {
+    "command": "typescript.sortImports",
+    "key": "shift+cmd+t shift+cmd+s"
+  }
+]

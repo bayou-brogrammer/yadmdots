@@ -1,0 +1,130 @@
+{
+	"editor.cursorBlinking": "expand",
+	"editor.cursorSmoothCaretAnimation": "on",
+	"editor.cursorStyle": "line",
+	"editor.fontFamily": "'Cascadia Code', 'CaskaydiaCove Nerd Font', 'Droid Sans Mono', Consolas, 'Courier New', monospace",
+	"editor.bracketPairColorization.enabled": true,
+	"editor.find.autoFindInSelection": "multiline",
+	"editor.fontLigatures": true,
+	"editor.fontSize": 13,
+	"editor.formatOnPaste": true,
+	"editor.formatOnSave": true,
+	"editor.formatOnSaveMode": "modifications",
+	"editor.guides.bracketPairs": "active",
+	"editor.inlayHints.enabled": "offUnlessPressed",
+	"editor.inlineSuggest.suppressSuggestions": true,
+	"editor.minimap.enabled": true,
+	"editor.minimap.maxColumn": 100,
+	"editor.minimap.renderCharacters": false,
+	"editor.minimap.showSlider": "always",
+	"editor.minimap.size": "fill",
+	"editor.renderWhitespace": "boundary",
+	"editor.smoothScrolling": true,
+	"editor.stickyScroll.enabled": true,
+	"editor.suggest.shareSuggestSelections": true,
+	"editor.tabSize": 2,
+	"explorer.compactFolders": false,
+	"files.autoGuessEncoding": true,
+	"files.autoSave": "afterDelay",
+	"files.autoSaveDelay": 1000,
+	"files.insertFinalNewline": true,
+	"files.trimFinalNewlines": true,
+	"files.trimTrailingWhitespace": true,
+	"workbench.colorCustomizations": {
+		"tree.indentGuidesStroke": "#999999" // Default is #555555.
+	},
+	"workbench.colorTheme": "One Dark Pro",
+	"workbench.editor.decorations.colors": true,
+	"workbench.editor.pinnedTabSizing": "shrink",
+	"workbench.editor.pinnedTabsOnSeparateRow": true,
+	"workbench.editor.wrapTabs": true,
+	"workbench.tree.enableStickyScroll": true,
+	"workbench.tree.indent": 11,
+	"workbench.tree.renderIndentGuides": "always",
+	"workbench.productIconTheme": "icons-octicons",
+	"breadcrumbs.enabled": true,
+	"debug.toolBarLocation": "commandCenter",
+	"supermaven.enable": {
+		"*": true
+	},
+	"window.density.editorTabHeight": "compact",
+	"terminal.integrated.scrollback": 10000,
+	"terminal.integrated.fontFamily": "CaskaydiaCove Nerd Font Mono",
+	// GIT
+	"git.autofetch": true,
+	"git.autoStash": true,
+	"git.mergeEditor": true,
+	"git.enableSmartCommit": true,
+	"github.copilot.enable": {
+		"*": false,
+		"plaintext": false,
+		"markdown": true,
+		"scminput": false
+	},
+	"githubPullRequests.pullBranch": "never",
+	"gitlens.advanced.messages": {
+		"suppressLineUncommittedWarning": true
+	},
+	// LANGUAGES
+	"[javascript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[json]": {
+		"editor.quickSuggestions": {
+			"strings": true
+		},
+		"editor.suggest.insertMode": "replace",
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "vscode.json-language-features"
+	},
+	"[lua]": {
+		"editor.defaultFormatter": "JohnnyMorganz.stylua"
+	},
+	"[markdown]": {
+		"editor.unicodeHighlight.invisibleCharacters": true
+	},
+	"[plaintext]": {
+		"editor.unicodeHighlight.invisibleCharacters": true
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+	},
+	"javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+	"javascript.inlayHints.enumMemberValues.enabled": true,
+	"javascript.inlayHints.parameterTypes.enabled": true,
+	"javascript.inlayHints.variableTypes.enabled": true,
+	"javascript.experimental.updateImportsOnPaste": true,
+	"typescript.inlayHints.enumMemberValues.enabled": true,
+	"typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+	"typescript.inlayHints.parameterNames.enabled": "all",
+	"typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+	"typescript.inlayHints.parameterTypes.enabled": true,
+	"typescript.inlayHints.variableTypes.enabled": true,
+	"oneDarkPro.bold": true,
+	"helium-icon-theme.activeIconPack": "react_redux",
+	"security.workspace.trust.untrustedFiles": "open",
+	"git.useEditorAsCommitInput": false,
+	"sonarlint.connectedMode.connections.sonarqube": [
+		{
+			"serverUrl": "https://sonar.cloud.bayer.com",
+			"connectionId": "Bayer Connection"
+		}
+	],
+	"security.promptForLocalFileProtocolHandling": false,
+	"github.copilot.chat.startDebugging.enabled": true,
+	"github.copilot.chat.generateTests.codeLens": true,
+	"github.copilot.chat.inlineChatCompletionTrigger.enabled": true,
+	"github.copilot.chat.temporalContext.enabled": true,
+	"windsurf.autocompleteSpeed": "fast",
+	"eslint.format.enable": true,
+	"windsurf.chatFontSize": "default",
+	"windsurf.rememberLastModelSelection": true,
+	"windsurf.openRecentConversation": true,
+	"windsurf.explainAndFixInCurrentConversation": true,
+	"windsurf.autoExecutionPolicy": "off",
+}
