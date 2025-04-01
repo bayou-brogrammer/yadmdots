@@ -2,6 +2,7 @@
 cargo-binstall = "latest"
 go = "latest"
 neovim = "latest"
-uv = "latest"
+node = "latest"
+"npm:prettier" = "latest"
 yamlfmt = "latest"
 zig = "latest"

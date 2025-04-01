@@ -1,1 +1,1 @@
-.Brewfile##class.Personal,extension.Brewfile
+.Brewfile##class.Work,extension.Brewfile
