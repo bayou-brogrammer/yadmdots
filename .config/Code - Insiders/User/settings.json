@@ -150,5 +150,4 @@
   ],
   "augment.nextEdit.enableGlobalBackgroundSuggestions": true,
   "augment.nextEdit.showDiffInHover": true,
-  "workbench.iconTheme": "icons",
 }

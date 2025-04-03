@@ -129,3 +129,5 @@ echo ".direnv" >> .gitignore
 git add .
 git commit -am "update gitignore"
 git commit -am "update gitignore"
+git config user.name
+git config user.email
