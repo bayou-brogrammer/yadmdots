@@ -21,10 +21,20 @@ if ! command -v brew >/dev/null 2>&1; then
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
-# Install packages from Brewfile
-if [ -f "${HOME}/.Brewfile" ]; then
-  printf "${YELLOW}%s${NC}\n" "Updating homebrew bundle"
-  brew bundle --global || printf "${RED}%s${NC}\n" "Failed to install packages"
+# Install mise if not already installed
+if ! command -v mise >/dev/null; then
+  echo "Installing mise..."
+  curl https://mise.jdx.dev/install.sh | sh
+else
+  echo "Mise is already installed."
+fi
+
+# Install Rust if not already installed
+if ! command -v rustc >/dev/null; then
+  echo "Installing Rust..."
+  curl https://sh.rustup.rs -sSf | sh -s -- -y
+else
+  echo "Rust is already installed."
 fi
 
 # Install FZF

@@ -1,5 +1,3 @@
-tap "starkandwayne/cf"
-
 brew "age"
 brew "asciinema"
 brew "atuin"

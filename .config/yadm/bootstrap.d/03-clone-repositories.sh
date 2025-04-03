@@ -16,5 +16,5 @@ cd ~/.config/nvim
 git remote set-url origin "git@github.com:bayou-brogrammer/nvim.git"
 
 echo "Updating the astronvim repo origin URL"
-cd ~/.config/astro-nvim/
+cd ~/.config/astronvim/
 git remote set-url origin "git@github.com:bayou-brogrammer/nvim.git"

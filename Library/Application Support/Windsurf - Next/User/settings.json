@@ -73,7 +73,7 @@
   "workbench.colorCustomizations": {
     "tree.indentGuidesStroke": "#999999"
   },
-  "workbench.colorTheme": "One Dark Pro Flat",
+  "workbench.colorTheme": "Tokyo Night",
   "workbench.editor.decorations.colors": true,
   "workbench.editor.pinnedTabSizing": "shrink",
   "workbench.editor.pinnedTabsOnSeparateRow": true,
@@ -245,6 +245,5 @@
   "update.releaseTrack": "prerelease",
   "[shellscript]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
-  },
-  "workbench.sideBar.location": "right"
+  }
 }

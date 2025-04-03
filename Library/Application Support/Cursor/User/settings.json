@@ -73,7 +73,6 @@
   "workbench.colorCustomizations": {
     "tree.indentGuidesStroke": "#999999"
   },
-  "workbench.colorTheme": "One Dark Pro Flat",
   "workbench.editor.decorations.colors": true,
   "workbench.editor.pinnedTabSizing": "shrink",
   "workbench.editor.pinnedTabsOnSeparateRow": true,
@@ -336,5 +335,7 @@
       "promptSuffix": ""
     }
   ],
-  "augment.completions.enableAutomaticCompletions": false
+  "augment.completions.enableAutomaticCompletions": false,
+  "window.commandCenter": 1,
+  "workbench.colorTheme": "Cursor Dark Midnight"
 }

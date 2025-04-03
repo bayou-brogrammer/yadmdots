@@ -7,9 +7,7 @@
       "command": "pipx",
       "args": [
         "run",
-        "mcp-server-git",
-        "--repository",
-        "~/dev/bayer-int/gc-agency-ui-monorepo"
+        "mcp-server-git"
       ]
     }
   }
