@@ -245,7 +245,6 @@
   "evenBetterToml.formatter.alignEntries": true,
   "cursor.composer.shouldChimeAfterChatFinishes": true,
   "cursor.composer.shouldAllowCustomModes": true,
-  "workbench.iconTheme": "icons",
   "geminiCoder.apiKey": "AIzaSyAXTXfH7hDrI4m-4qpFlHwRCce0VKNovWE",
   "eslint.format.enable": true,
   "cursorStats.enableAlerts": false,
@@ -337,5 +336,6 @@
   ],
   "augment.completions.enableAutomaticCompletions": false,
   "window.commandCenter": 1,
-  "workbench.colorTheme": "Cursor Dark Midnight"
+  "workbench.colorTheme": "One Dark Pro",
+  "workbench.iconTheme": "icons"
 }
