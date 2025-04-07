@@ -2,13 +2,6 @@
   "mcpServers": {
     "skeet-server": {
       "url": "https://skeet.sh/ot/2ae4df5d685a8d98ecdcfcad8ff97b526a83a2b92027284fd5e040368c93d5a0"
-    },
-    "git": {
-      "command": "pipx",
-      "args": [
-        "run",
-        "mcp-server-git"
-      ]
     }
   }
 }

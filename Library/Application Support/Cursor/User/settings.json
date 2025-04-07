@@ -337,5 +337,6 @@
   "augment.completions.enableAutomaticCompletions": false,
   "window.commandCenter": 1,
   "workbench.colorTheme": "One Dark Pro",
-  "workbench.iconTheme": "icons"
+  "workbench.iconTheme": "icons",
+  "geminicodeassist.inlineSuggestions.enableAuto": false
 }
