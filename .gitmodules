@@ -4,3 +4,6 @@
 [submodule ".config/zsh"]
 	path = .config/zsh
 	url = https://github.com/bayou-brogrammer/zdotdir.git
+[submodule "/home/lecoqjacob/.config/astronvim"]
+	path = /home/lecoqjacob/.config/astronvim
+	url = https://github.com/bayou-brogrammer/nvim-astro

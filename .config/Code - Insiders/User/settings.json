@@ -133,7 +133,7 @@
   ],
   "augment.nextEdit.enableGlobalBackgroundSuggestions": true,
   "augment.nextEdit.showDiffInHover": true,
-  "workbench.colorTheme": "One Dark Pro",
+  "workbench.colorTheme": "Developers Theme - Firefox Dark",
   "workbench.iconTheme": "icons",
   "workbench.productIconTheme": "developer-icons",
   "github.copilot.nextEditSuggestions.enabled": true,

@@ -7,7 +7,10 @@ fi
 # Setup Distribution installs
 echo "Installing Distribution Packages"
 echo $INSTALL_CMD
-sudo pacman -S --noconfirm base-devel gcc git-delta
+sudo pacman -S --noconfirm base-devel gcc yq
+
+# Install packages
+yq '.packages[]' "$YAMD_PACKAGES/pacman.yaml" | xargs sudo pacman -S --needed --noconfirm
 
 if ! command -v brew >/dev/null; then
   echo "Installing Homebrew..."
@@ -46,7 +49,7 @@ fi
 # Install Cursor
 if ! command -v cursor >/dev/null; then
   echo "Installing Cursor..."
-  yay -S --noconfirm cursor-bin
+  paru -S --noconfirm cursor-bin
 else
   echo "Cursor is already installed."
 fi
@@ -54,7 +57,7 @@ fi
 # Install WindSurf
 if ! command -v windsurf-next >/dev/null; then
   echo "Installing WindSurf..."
-  yay -S --noconfirm windsurf-next
+  paru -S --noconfirm windsurf-next
 else
   echo "WindSurf is already installed."
 fi
@@ -62,7 +65,10 @@ fi
 # install legcord
 if ! command -v legcord >/dev/null; then
   echo "Installing legcord..."
-  yay -S --noconfirm legcord-git
+  #paru -S --noconfirm legcord-git
 else
   echo "legcord is already installed."
 fi
+
+# UV
+curl -LsSf https://astral.sh/uv/install.sh | sh

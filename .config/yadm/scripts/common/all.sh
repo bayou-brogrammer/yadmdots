@@ -2,6 +2,7 @@
 
 export YADM_DIR="$HOME/.config/yadm"
 export YADM_SCRIPTS="${YADM_DIR}/scripts"
+export YAMD_PACKAGES=${YADM_DIR}/packages
 export COMMON_DIR="${YADM_DIR}/scripts/common"
 export YADM_TEMPLATES="${YADM_DIR}/bootstrap.d/config_templates"
 

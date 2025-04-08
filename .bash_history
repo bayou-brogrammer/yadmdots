@@ -131,3 +131,55 @@ git commit -am "update gitignore"
 git commit -am "update gitignore"
 git config user.name
 git config user.email
+cd ~/.config/dotfiles/
+ls -la
+pacu 
+yay
+cd
+paru
+yay -S legcord-git
+yay -S legcord
+cd ~/.config/yadm/bootstrap.d/
+ls -la
+nvim 40-setup-tailscale.sh##os.Linux
+yadm add 40-setup-tailscale.sh\#\#os.Linux 
+nvim ../packages/pacman.yaml 
+yadm boostrap
+yadm bootstrap
+mise
+paru -S zen-browser
+brew install pkgx || curl https://pkgx.sh | sh
+pkgx
+zsh
+nvim ~/.config/yadm/bootstrap.d/
+quit
+garuda-update
+yay -Syyu
+paru -syyu
+paru -Syyu
+cd Projects/
+mkdir go_projects
+cd gfo
+cd go_projects/
+gh auth logun
+gh auth login
+sudo pacman -S gh
+sudo pacman -S github-cli
+nvim ~/.config/yadm/packages/pacman.yaml 
+gh auth login
+gh extensions list
+gh extensions browse
+eval $(ssh-agent)
+ssh-add ~/.ssh/id_ed25519
+gh extensions browse
+pip
+pythomn
+python
+python -m ensurepip --upgrade
+uvx
+uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
+nvim ~/.config/yadm/bootstrap.d/02-software-install.sh 
+uv
+yadm status
+nvim .config/zsh/.zshrc 

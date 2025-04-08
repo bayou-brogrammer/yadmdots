@@ -73,7 +73,6 @@
   "workbench.colorCustomizations": {
     "tree.indentGuidesStroke": "#999999"
   },
-  "workbench.colorTheme": "One Dark Pro Flat",
   "workbench.editor.decorations.colors": true,
   "workbench.editor.pinnedTabSizing": "shrink",
   "workbench.editor.pinnedTabsOnSeparateRow": true,
@@ -83,7 +82,7 @@
   "workbench.tree.renderIndentGuides": "always",
   // WINDOW
   "window.density.editorTabHeight": "compact",
-  "window.newWindowProfile": "Default",
+  "window.newWindowProfile": "Personal",
   "eslint.useESLintClass": true,
   // GIT
   "git.autofetch": true,
@@ -240,5 +239,6 @@
   "cursorStats.enableAlerts": false,
   "augment.completions.enableAutomaticCompletions": false,
   "augment.nextEdit.enableGlobalBackgroundSuggestions": true,
-  "augment.nextEdit.showDiffInHover": true
+  "augment.nextEdit.showDiffInHover": true,
+  "window.commandCenter": 1
 }
