@@ -192,10 +192,6 @@
   "geminicodeassist.project": "",
   "notebook.defaultFormatter": "esbenp.prettier-vscode",
   "oneDarkPro.bold": true,
-  "projectManager.git.baseFolders": [
-    "/Users/lecoqjacob/dev/bayer-int/",
-    "~/Projects/go"
-  ],
   "roo-cline.allowedCommands": [
     "npm test",
     "npm install",
@@ -229,13 +225,6 @@
     "conditional-type",
     "tuple-type"
   ],
-  "sonarlint.connectedMode.connections.sonarqube": [
-    {
-      "serverUrl": "https://sonar.cloud.bayer.com",
-      "connectionId": "https-sonar-cloud-bayer-com"
-    }
-  ],
-  "sync.gist": "101e657df66228bf86f0ecc99c237c86",
   "update.releaseTrack": "prerelease",
   "[shellscript]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
@@ -245,98 +234,14 @@
   "evenBetterToml.formatter.alignEntries": true,
   "cursor.composer.shouldChimeAfterChatFinishes": true,
   "cursor.composer.shouldAllowCustomModes": true,
-  "geminiCoder.apiKey": "AIzaSyAXTXfH7hDrI4m-4qpFlHwRCce0VKNovWE",
   "eslint.format.enable": true,
-  "cursorStats.enableAlerts": false,
-  "geminiCoder.presets": [
-    {
-      "name": "AI Studio with 2.0 Flash",
-      "chatbot": "AI Studio",
-      "promptPrefix": "",
-      "promptSuffix": "",
-      "model": "gemini-2.0-flash",
-      "temperature": 0.5,
-      "systemInstructions": "You're a helpful coding assistant. Whenever proposing a file use the file block syntax.\nFiles must be represented as code blocks with their `name` in the header.\nExample of a code block with a file name in the header:\n```typescript name=filename.ts\ncontents of file\n```"
-    },
-    {
-      "name": "AI Studio with 2.0 Flash Thinking Exp",
-      "chatbot": "AI Studio",
-      "promptPrefix": "",
-      "promptSuffix": "",
-      "model": "gemini-2.0-flash-thinking-exp-01-21",
-      "temperature": 0.5,
-      "systemInstructions": "You're a helpful coding assistant. Whenever proposing a file use the file block syntax.\nFiles must be represented as code blocks with their `name` in the header.\nExample of a code block with a file name in the header:\n```typescript name=filename.ts\ncontents of file\n```"
-    },
-    {
-      "name": "AI Studio with 2.5 Pro Exp",
-      "chatbot": "AI Studio",
-      "promptPrefix": "",
-      "promptSuffix": "",
-      "model": "gemini-2.5-pro-exp-03-25",
-      "temperature": 0.5,
-      "systemInstructions": "You're a helpful coding assistant. Whenever proposing a file use the file block syntax.\nFiles must be represented as code blocks with their `name` in the header.\nExample of a code block with a file name in the header:\n```typescript name=filename.ts\ncontents of file\n```"
-    },
-    {
-      "name": "Gemini",
-      "chatbot": "Gemini",
-      "promptPrefix": "",
-      "promptSuffix": ""
-    },
-    {
-      "name": "Gemini with canvas",
-      "chatbot": "Gemini",
-      "promptPrefix": "",
-      "promptSuffix": "",
-      "options": [
-        "canvas"
-      ]
-    },
-    {
-      "name": "ChatGPT",
-      "chatbot": "ChatGPT",
-      "promptPrefix": "",
-      "promptSuffix": ""
-    },
-    {
-      "name": "Claude",
-      "chatbot": "Claude",
-      "promptPrefix": "",
-      "promptSuffix": ""
-    },
-    {
-      "name": "GitHub Copilot",
-      "chatbot": "GitHub Copilot",
-      "promptPrefix": "",
-      "promptSuffix": ""
-    },
-    {
-      "name": "Grok",
-      "chatbot": "Grok",
-      "promptPrefix": "",
-      "promptSuffix": ""
-    },
-    {
-      "name": "DeepSeek",
-      "chatbot": "DeepSeek",
-      "promptPrefix": "",
-      "promptSuffix": ""
-    },
-    {
-      "name": "Mistral",
-      "chatbot": "Mistral",
-      "promptPrefix": "",
-      "promptSuffix": ""
-    },
-    {
-      "name": "Open WebUI",
-      "chatbot": "Open WebUI",
-      "promptPrefix": "",
-      "promptSuffix": ""
-    }
-  ],
   "augment.completions.enableAutomaticCompletions": false,
   "window.commandCenter": 1,
   "workbench.colorTheme": "One Dark Pro",
   "workbench.iconTheme": "icons",
-  "geminicodeassist.inlineSuggestions.enableAuto": false
+  "geminicodeassist.inlineSuggestions.enableAuto": false,
+  "cursor.terminal.usePreviewBox": true,
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  }
 }
