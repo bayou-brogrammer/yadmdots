@@ -2,6 +2,9 @@
   "mcpServers": {
     "skeet-server": {
       "url": "https://skeet.sh/ot/2ae4df5d685a8d98ecdcfcad8ff97b526a83a2b92027284fd5e040368c93d5a0"
+    },
+    "rl2023_ocaml Docs": {
+      "url": "https://gitmcp.io/bayou-brogrammer/rl2023_ocaml"
     }
   }
 }

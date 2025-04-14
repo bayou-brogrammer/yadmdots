@@ -243,5 +243,9 @@
   "cursor.terminal.usePreviewBox": true,
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff"
-  }
+  },
+  "[ocaml]": {
+    "editor.defaultFormatter": "ocamllabs.ocaml-platform"
+  },
+  "continue.enableTabAutocomplete": false
 }
