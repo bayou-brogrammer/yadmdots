@@ -82,7 +82,6 @@
   "workbench.tree.renderIndentGuides": "always",
   // WINDOW
   "window.density.editorTabHeight": "compact",
-  "window.newWindowProfile": "Personal",
   "eslint.useESLintClass": true,
   // GIT
   "git.autofetch": true,
@@ -240,5 +239,7 @@
   "augment.completions.enableAutomaticCompletions": false,
   "augment.nextEdit.enableGlobalBackgroundSuggestions": true,
   "augment.nextEdit.showDiffInHover": true,
-  "window.commandCenter": 1
+  "window.commandCenter": 1,
+  "workbench.colorTheme": "One Dark Pro",
+  "window.newWindowProfile": "Personal"
 }

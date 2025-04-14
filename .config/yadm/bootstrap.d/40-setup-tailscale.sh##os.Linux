@@ -2,6 +2,7 @@
 
 echo "Enabling Tailscale..."
 sudo systemctl enable tailscaled
+sudo systemctl start tailscaled
 
 sleep 1
 echo "Starting Tailscale..."

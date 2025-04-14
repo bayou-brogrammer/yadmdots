@@ -5,5 +5,5 @@
 	path = .config/zsh
 	url = https://github.com/bayou-brogrammer/zdotdir.git
 [submodule "/home/lecoqjacob/.config/astronvim"]
-	path = /home/lecoqjacob/.config/astronvim
+	path = .config/astronvim
 	url = git@github.com:bayou-brogrammer/nvim-astro.git

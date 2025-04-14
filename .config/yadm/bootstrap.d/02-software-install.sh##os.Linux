@@ -22,14 +22,6 @@ else
   echo "Homebrew is already installed."
 fi
 
-# Install fnm if not already installed
-if ! command -v fnm >/dev/null; then
-  echo "Installing fnm..."
-  curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
-else
-  echo "Fnm is already installed."
-fi
-
 # Install mise if not already installed
 if ! command -v mise >/dev/null; then
   echo "Installing mise..."
@@ -39,7 +31,7 @@ else
 fi
 
 # Install Rust if not already installed
-if ! command -v rustc >/dev/null; then
+if ! command -v cargo >/dev/null; then
   echo "Installing Rust..."
   curl https://sh.rustup.rs -sSf | sh -s -- -y
 else
