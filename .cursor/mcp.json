@@ -5,6 +5,13 @@
     },
     "rl2023_ocaml Docs": {
       "url": "https://gitmcp.io/bayou-brogrammer/rl2023_ocaml"
+    },
+    "raylib-ocaml Docs": {
+      "url": "https://gitmcp.io/tjammer/raylib-ocaml"
+    },
+    "fetch": {
+      "command": "uvx",
+      "args": ["mcp-server-fetch"]
     }
   }
 }
