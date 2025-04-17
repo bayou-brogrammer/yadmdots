@@ -8,8 +8,8 @@
   "editor.cursorStyle": "line",
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "editor.find.autoFindInSelection": "multiline",
-  "editor.fontFamily": "'Cascadia Code', 'GoMono Nerd Font', 'CaskaydiaCove Nerd Font', 'Droid Sans Mono', Consolas, 'Courier New', monospace",
-  "editor.fontLigatures": true,
+  "editor.fontFamily": "'Cascadia Code SemiLight','Cascadia Code', 'GoMono Nerd Font', 'CaskaydiaCove Nerd Font', 'Droid Sans Mono', Consolas, 'Courier New', monospace",
+  "editor.fontLigatures": "'ss02', 'liga'",
   "editor.fontSize": 13,
   "editor.formatOnPaste": false,
   "editor.formatOnSave": true,
@@ -77,6 +77,7 @@
   "workbench.editor.pinnedTabSizing": "shrink",
   "workbench.editor.pinnedTabsOnSeparateRow": true,
   "workbench.editor.wrapTabs": true,
+  "workbench.fontAliasing": "antialiased",
   "workbench.tree.enableStickyScroll": true,
   "workbench.tree.indent": 11,
   "workbench.tree.renderIndentGuides": "always",
@@ -178,7 +179,6 @@
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Random Extensions
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  "cursor.cmdk.useThemedDiffBackground": true,
   "cursor.cpp.enablePartialAccepts": true,
   "cursor.diffs.useCharacterLevelDiffs": true,
   "cursorStats.showTotalRequests": true,
@@ -236,7 +236,7 @@
   "cursor.composer.shouldAllowCustomModes": true,
   "eslint.format.enable": true,
   "augment.completions.enableAutomaticCompletions": false,
-  "window.commandCenter": 1,
+  "window.commandCenter": true,
   "workbench.colorTheme": "One Dark Pro",
   "workbench.iconTheme": "icons",
   "geminicodeassist.inlineSuggestions.enableAuto": false,
@@ -247,5 +247,11 @@
   "[ocaml]": {
     "editor.defaultFormatter": "ocamllabs.ocaml-platform"
   },
-  "continue.enableTabAutocomplete": false
+  "continue.enableTabAutocomplete": false,
+  "[dune]": {
+    "editor.defaultFormatter": "ocamllabs.ocaml-platform"
+  },
+  "vscode_custom_css.imports": [
+    "file://${userHome}/.config/vscode-styles.css"
+  ]
 }
