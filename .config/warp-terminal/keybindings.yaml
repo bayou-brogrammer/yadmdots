@@ -1,2 +1,8 @@
 ---
+"pane_group:add_down": shift-cmd-E
+Close Workflow: shift-cmd-W
+"pane_group:close_current_session": shift-cmd-W
+"pane_group:add_right": shift-cmd-D
 "editor_view:delete": none
+Close Env Var Collection: shift-cmd-W
+"terminal:copy": shift-cmd-C

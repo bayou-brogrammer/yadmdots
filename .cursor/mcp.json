@@ -3,15 +3,24 @@
     "skeet-server": {
       "url": "https://skeet.sh/ot/2ae4df5d685a8d98ecdcfcad8ff97b526a83a2b92027284fd5e040368c93d5a0"
     },
-    "rl2023_ocaml Docs": {
-      "url": "https://gitmcp.io/bayou-brogrammer/rl2023_ocaml"
-    },
-    "raylib-ocaml Docs": {
-      "url": "https://gitmcp.io/tjammer/raylib-ocaml"
-    },
     "fetch": {
       "command": "uvx",
       "args": ["mcp-server-fetch"]
+    },
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"]
+    },
+    "memory-bank": {
+      "url": "http://localhost:8080/sse"
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+    },
+    "context7": {
+      "command": "npx",
+      "args": ["tsx", "/home/lecoqjacob/Projects/context7/src/index.ts"]
     }
   }
 }

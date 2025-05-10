@@ -53,7 +53,7 @@
 	"git.mergeEditor": true,
 	"git.enableSmartCommit": true,
 	"github.copilot.enable": {
-		"*": true,
+		"*": false,
 		"plaintext": false,
 		"markdown": true,
 		"scminput": false,
@@ -150,4 +150,10 @@
 	"[python]": {
 		"editor.defaultFormatter": "charliermarsh.ruff"
 	},
+	"yaml.schemas": {
+		"/home/lecoqjacob/.vscode-insiders/extensions/continue.continue-1.1.24-linux-x64/config-yaml-schema.json": [
+			".continue/**/*.yaml"
+		]
+	},
+	"augment.chat.userGuidelines": "",
 }
