@@ -7,12 +7,13 @@
       "command": "uvx",
       "args": ["mcp-server-fetch"]
     },
-    "memory": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-memory"]
-    },
-    "memory-bank": {
-      "url": "http://localhost:8080/sse"
+    "perplexity-mcp": {
+      "env": {
+        "PERPLEXITY_API_KEY": "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",
+        "PERPLEXITY_MODEL": "sonar"
+      },
+      "command": "uvx",
+      "args": ["perplexity-mcp"]
     },
     "sequential-thinking": {
       "command": "npx",
@@ -20,7 +21,16 @@
     },
     "context7": {
       "command": "npx",
-      "args": ["tsx", "/home/lecoqjacob/Projects/context7/src/index.ts"]
+      "args": ["-y", "@upstash/context7-mcp@latest"]
+    },
+    "godot": {
+      "command": "node",
+      "args": [
+        "/Users/lecoqjacob/Projects/personal_projects/godot-mcp/build/index.js"
+      ],
+      "env": {
+        "DEBUG": "true"
+      }
     }
   }
 }

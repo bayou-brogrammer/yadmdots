@@ -21,5 +21,10 @@
   {
     "key": "cmd+i",
     "command": "composerMode.agent"
+  },
+  {
+    "key": "cmd+;",
+    "command": "-workbench.action.backgroundComposer.openControlPanel2",
+    "when": "backgroundComposerEnabled"
   }
 ]

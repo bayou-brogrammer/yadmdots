@@ -10,7 +10,7 @@
   "editor.find.autoFindInSelection": "multiline",
   "editor.fontFamily": "'Cascadia Code', 'GoMono Nerd Font', 'CaskaydiaCove Nerd Font', 'Droid Sans Mono', Consolas, 'Courier New', monospace",
   "editor.fontLigatures": true,
-  "editor.fontSize": 13,
+  "editor.fontSize": 14,
   "editor.formatOnPaste": false,
   "editor.formatOnSave": true,
   "editor.formatOnType": false,
@@ -73,7 +73,7 @@
   "workbench.colorCustomizations": {
     "tree.indentGuidesStroke": "#999999"
   },
-  "workbench.colorTheme": "Tokyo Night Storm",
+  "workbench.colorTheme": "Default Dark+",
   "workbench.editor.decorations.colors": true,
   "workbench.editor.pinnedTabSizing": "shrink",
   "workbench.editor.pinnedTabsOnSeparateRow": true,
