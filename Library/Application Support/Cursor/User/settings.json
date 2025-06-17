@@ -8,8 +8,8 @@
   "editor.cursorStyle": "line",
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "editor.find.autoFindInSelection": "multiline",
-  "editor.fontFamily": "'Monaspace Krypton','Cascadia Code', 'GoMono Nerd Font', 'CaskaydiaCove Nerd Font', 'Droid Sans Mono', Consolas, 'Courier New', monospace",
-  "editor.fontLigatures": "'ss02', 'liga'",
+  "editor.fontFamily": "'Cascadia Code', 'GoMono Nerd Font', 'CaskaydiaCove Nerd Font', 'Droid Sans Mono', Consolas, 'Courier New', monospace",
+  "editor.fontLigatures": true,
   "editor.fontSize": 13,
   "editor.formatOnPaste": false,
   "editor.formatOnSave": true,
@@ -50,8 +50,7 @@
     "**/.trunk/*logs/": true,
     "**/.trunk/*notifications/": true,
     "**/.trunk/*out/": true,
-    "**/.trunk/*plugins/": true,
-    "**/*.uid": true
+    "**/.trunk/*plugins/": true
   },
   "files.watcherExclude": {
     "**/.trunk/*actions/": true,
@@ -78,13 +77,11 @@
   "workbench.editor.pinnedTabSizing": "shrink",
   "workbench.editor.pinnedTabsOnSeparateRow": true,
   "workbench.editor.wrapTabs": true,
-  "workbench.fontAliasing": "antialiased",
   "workbench.tree.enableStickyScroll": true,
   "workbench.tree.indent": 11,
   "workbench.tree.renderIndentGuides": "always",
   // WINDOW
   "window.density.editorTabHeight": "compact",
-  "window.newWindowProfile": "Default",
   "eslint.useESLintClass": true,
   // GIT
   "git.autofetch": true,
@@ -139,6 +136,14 @@
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
+  "[lua]": {
+    "editor.defaultFormatter": "sumneko.lua"
+  },
+  "Lua.codeLens.enable": true,
+  "Lua.workspace.library": [
+    "~/.local/share/nvim/lazy/",
+    "~/.local/share/nvim/mason"
+  ],
   "[markdown]": {
     "editor.unicodeHighlight.invisibleCharacters": true
   },
@@ -152,7 +157,7 @@
     "editor.defaultFormatter": "tamasfe.even-better-toml"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "typescript.inlayHints.enumMemberValues.enabled": true,
   "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
@@ -161,7 +166,7 @@
   "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
   "typescript.inlayHints.variableTypes.enabled": true,
   "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -172,8 +177,12 @@
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
   // Random Extensions
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  "cursor.cmdk.useThemedDiffBackground": true,
+  "cursor.composer.shouldAllowCustomModes": true,
+  "cursor.composer.shouldChimeAfterChatFinishes": true,
   "cursor.cpp.enablePartialAccepts": true,
   "cursor.diffs.useCharacterLevelDiffs": true,
+  "cursor.terminal.usePreviewBox": true,
   "cursorStats.showTotalRequests": true,
   "cursor.cpp.disabledLanguages": [
     "plaintext",
@@ -225,280 +234,12 @@
   "workbench.activityBar.orientation": "vertical",
   "evenBetterToml.formatter.alignComments": true,
   "evenBetterToml.formatter.alignEntries": true,
-  "cursor.composer.shouldChimeAfterChatFinishes": true,
-  "cursor.composer.shouldAllowCustomModes": true,
   "eslint.format.enable": true,
-  "augment.completions.enableAutomaticCompletions": false,
-  "window.commandCenter": true,
-  "workbench.iconTheme": "icons",
-  "cursor.terminal.usePreviewBox": true,
-  "[python]": {
-    "editor.defaultFormatter": "charliermarsh.ruff"
-  },
-  "[ocaml]": {
-    "editor.defaultFormatter": "ocamllabs.ocaml-platform"
-  },
-  "[dune]": {
-    "editor.defaultFormatter": "ocamllabs.ocaml-platform"
-  },
-  "vscode_custom_css.imports": [
-    "file:///Users/lecoqjacob/.config/vscode-styles.css"
-  ],
-  "[ocaml.interface]": {
-    "editor.defaultFormatter": "ocamllabs.ocaml-platform"
-  },
-  "yaml.schemas": {
-    "/Users/lecoqjacob/.cursor/extensions/continue.continue-1.0.7-darwin-arm64/config-yaml-schema.json": [
-      ".continue/**/*.yaml"
-    ]
-  },
-  "cursor.general.gitGraphIndexing": "enabled",
-  "gitlens.ai.generateCommitMessage.customInstructions": "use semantic commit messages with type(scope): description",
-  "ocaml.commands.typedHoles.constructAfterNavigate": true,
-  "ocaml.server.extendedHover": true,
-  "ocaml.server.syntaxDocumentation": true,
-  "augment.chat.userGuidelines": "",
-  "geminiCoder.presets": [
-    {
-      "name": "2.5 Pro",
-      "chatbot": "AI Studio",
-      "model": "gemini-2.5-pro-preview-03-25",
-      "temperature": 0.5,
-      "systemInstructions": "You're a helpful coding assistant."
-    },
-    {
-      "name": "2.5 Flash",
-      "chatbot": "AI Studio",
-      "model": "gemini-2.5-flash-preview-04-17",
-      "temperature": 0.5,
-      "systemInstructions": "You're a helpful coding assistant."
-    },
-    {
-      "name": "2.0 Flash",
-      "chatbot": "AI Studio",
-      "model": "gemini-2.0-flash",
-      "temperature": 0.5,
-      "systemInstructions": "You're a helpful coding assistant."
-    },
-    {
-      "name": "2.5 Pro",
-      "chatbot": "Gemini",
-      "model": "2.5-pro"
-    },
-    {
-      "name": "2.5 Pro (canvas)",
-      "chatbot": "Gemini",
-      "model": "2.5-pro",
-      "options": [
-        "canvas"
-      ]
-    },
-    {
-      "name": "2.5 Flash",
-      "chatbot": "Gemini",
-      "model": "2.5-flash-experimental"
-    },
-    {
-      "name": "2.5 Flash (canvas)",
-      "chatbot": "Gemini",
-      "model": "2.5-flash-experimental",
-      "options": [
-        "canvas"
-      ]
-    },
-    {
-      "name": "ChatGPT",
-      "chatbot": "ChatGPT"
-    },
-    {
-      "name": "Claude",
-      "chatbot": "Claude"
-    },
-    {
-      "name": "Grok",
-      "chatbot": "Grok"
-    },
-    {
-      "name": "Grok (Think)",
-      "chatbot": "Grok",
-      "options": [
-        "think"
-      ]
-    },
-    {
-      "name": "DeepSeek",
-      "chatbot": "DeepSeek"
-    },
-    {
-      "name": "DeepSeek - DeepThink (R1)",
-      "chatbot": "DeepSeek",
-      "options": [
-        "deep-think"
-      ]
-    },
-    {
-      "name": "Qwen",
-      "chatbot": "Qwen",
-      "options": [
-        "thinking"
-      ]
-    },
-    {
-      "name": "Mistral",
-      "chatbot": "Mistral"
-    },
-    {
-      "name": "HuggingChat",
-      "chatbot": "HuggingChat"
-    },
-    {
-      "name": "Open WebUI",
-      "chatbot": "Open WebUI",
-      "temperature": 0.5,
-      "systemInstructions": "You're a helpful coding assistant.",
-      "port": 3000
-    }
-  ],
-  "geminiCoder.apiToolCommitMessageSettings": {
-    "provider": "Gemini API",
-    "model": "gemini-2.5-flash-preview-04-17",
-    "temperature": 0.5
-  },
-  "geminiCoder.apiToolCodeCompletionsSettings": {
-    "provider": "Gemini API",
-    "model": "gemini-2.5-pro-exp-03-25",
-    "temperature": 0.7
-  },
-  "geminiCoder.apiToolFileRefactoringSettings": {
-    "provider": "Gemini API",
-    "model": "gemini-2.5-pro-exp-03-25",
-    "temperature": 0.7
-  },
-  "[gdscript]": {
-    "editor.defaultFormatter": "geequlim.godot-tools"
-  },
-  "codeWebChat.presets": [
-    {
-      "name": "2.5 Pro",
-      "chatbot": "AI Studio",
-      "model": "gemini-2.5-pro-preview-03-25",
-      "temperature": 0.5,
-      "systemInstructions": "You're a helpful coding assistant."
-    },
-    {
-      "name": "2.5 Flash",
-      "chatbot": "AI Studio",
-      "model": "gemini-2.5-flash-preview-04-17",
-      "temperature": 0.5,
-      "systemInstructions": "You're a helpful coding assistant."
-    },
-    {
-      "name": "2.0 Flash",
-      "chatbot": "AI Studio",
-      "model": "gemini-2.0-flash",
-      "temperature": 0.5,
-      "systemInstructions": "You're a helpful coding assistant."
-    },
-    {
-      "name": "2.5 Pro",
-      "chatbot": "Gemini",
-      "model": "2.5-pro"
-    },
-    {
-      "name": "2.5 Pro (canvas)",
-      "chatbot": "Gemini",
-      "model": "2.5-pro",
-      "options": [
-        "canvas"
-      ]
-    },
-    {
-      "name": "2.5 Flash",
-      "chatbot": "Gemini",
-      "model": "2.5-flash-experimental"
-    },
-    {
-      "name": "2.5 Flash (canvas)",
-      "chatbot": "Gemini",
-      "model": "2.5-flash-experimental",
-      "options": [
-        "canvas"
-      ]
-    },
-    {
-      "name": "ChatGPT",
-      "chatbot": "ChatGPT"
-    },
-    {
-      "name": "Claude",
-      "chatbot": "Claude"
-    },
-    {
-      "name": "Grok",
-      "chatbot": "Grok"
-    },
-    {
-      "name": "Grok (Think)",
-      "chatbot": "Grok",
-      "options": [
-        "think"
-      ]
-    },
-    {
-      "name": "DeepSeek",
-      "chatbot": "DeepSeek"
-    },
-    {
-      "name": "DeepSeek - DeepThink (R1)",
-      "chatbot": "DeepSeek",
-      "options": [
-        "deep-think"
-      ]
-    },
-    {
-      "name": "Qwen",
-      "chatbot": "Qwen",
-      "options": [
-        "thinking"
-      ]
-    },
-    {
-      "name": "Mistral",
-      "chatbot": "Mistral"
-    },
-    {
-      "name": "HuggingChat",
-      "chatbot": "HuggingChat"
-    },
-    {
-      "name": "Open WebUI",
-      "chatbot": "Open WebUI",
-      "temperature": 0.5,
-      "systemInstructions": "You're a helpful coding assistant.",
-      "port": 3000
-    }
-  ],
-  "codeWebChat.apiToolCodeCompletionsSettings": {
-    "provider": "Gemini API",
-    "model": "gemini-2.5-pro-exp-03-25",
-    "temperature": 0.7
-  },
-  "codeWebChat.apiToolFileRefactoringSettings": {
-    "provider": "Gemini API",
-    "model": "gemini-2.5-pro-exp-03-25",
-    "temperature": 0.7
-  },
-  "codeWebChat.apiToolCommitMessageSettings": {
-    "provider": "Gemini API",
-    "model": "gemini-2.5-flash-preview-04-17",
-    "temperature": 0.5
-  },
-  "godotTools.formatter.maxEmptyLines": "1",
-  "godotTools.inlayHints.gdscript": true,
-  "godotTools.formatter.denseFunctionParameters": true,
   "cursorStats.enableAlerts": false,
-  "godotTools.editorPath.godot4": "/opt/homebrew/bin/godot",
-  "redhat.telemetry.enabled": true,
+  "augment.completions.enableAutomaticCompletions": false,
+  "augment.nextEdit.enableGlobalBackgroundSuggestions": true,
+  "augment.nextEdit.showDiffInHover": true,
+  "window.commandCenter": true,
   "workbench.colorTheme": "One Dark Pro",
-  "cursor.composer.collapsePaneInputBoxPills": true
+  "window.newWindowProfile": "Default"
 }
