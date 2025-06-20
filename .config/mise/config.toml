@@ -4,3 +4,6 @@ cargo-binstall = "latest"
 go = "latest"
 neovim = "latest"
 yamlfmt = "latest"
+
+[settings]
+idiomatic_version_file_enable_tools = ["python"]

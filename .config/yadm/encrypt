@@ -3,3 +3,4 @@
 .ssh/*_rsa
 .ssh/id*
 .local/share/gnupg/.exported-keyring/*
+.cursor/mcp.json
