@@ -1,48 +1,207 @@
 #!/usr/bin/env bash
 
+# Core Software Installation Script
+# Installs essential development tools and applications based on FIXES.md requirements
+
+set -euo pipefail
+
 class=$(yadm config local.class)
 
+# Helper functions for better error handling
+install_if_missing() {
+    local command_name="$1"
+    local install_command="$2"
+    local description="$3"
+
+    if ! command -v "$command_name" >/dev/null 2>&1; then
+        echo "Installing ${description}..."
+        if eval "$install_command"; then
+            echo "✅ Successfully installed ${description}"
+        else
+            echo "❌ Failed to install ${description}"
+            return 1
+        fi
+    else
+        echo "✅ ${description} already installed"
+    fi
+}
+
+install_homebrew_if_missing() {
+    if ! command -v brew >/dev/null 2>&1; then
+        echo "Installing Homebrew..."
+        # Use official Homebrew installer (updated from deprecated Ruby script)
+        if /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"; then
+            # Add Homebrew to PATH for current session
+            if [[ -f "/opt/homebrew/bin/brew" ]]; then
+                eval "$(/opt/homebrew/bin/brew shellenv)"
+            elif [[ -f "/usr/local/bin/brew" ]]; then
+                eval "$(/usr/local/bin/brew shellenv)"
+            fi
+            echo "✅ Successfully installed Homebrew"
+        else
+            echo "❌ Failed to install Homebrew"
+            return 1
+        fi
+    else
+        echo "✅ Homebrew already installed"
+    fi
+}
+
+# macOS System Updates (skip for Work machines to avoid interruptions)
 if [[ "$class" != "Work" ]]; then
-  sudo softwareupdate -i -a
+    echo "Checking for macOS system updates..."
+    if sudo softwareupdate -i -a; then
+        echo "✅ System updates completed"
+    else
+        echo "⚠️  System updates failed or no updates available"
+    fi
 
-  if [[ $(uname -m) == 'arm64' ]]; then
-    sudo softwareupdate --install-rosetta --agree-to-license
-  fi
+    # Install Rosetta for Apple Silicon Macs
+    if [[ $(uname -m) == 'arm64' ]]; then
+        echo "Installing Rosetta for Apple Silicon..."
+        if sudo softwareupdate --install-rosetta --agree-to-license 2>/dev/null; then
+            echo "✅ Rosetta installed successfully"
+        else
+            echo "⚠️  Rosetta installation failed or already installed"
+        fi
+    fi
 fi
 
-# The Xcode Command Line Tools includes git and make (not available on stock macOS)
-if ! command -v git >/dev/null; then
-  xcode-select --install
-fi
-
-# install homebrew if it's missing
-if ! command -v brew >/dev/null 2>&1; then
-  printf "${YELLOW}%s${NC}\n" "Installing homebrew"
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi
-
-# Install mise if not already installed
-if ! command -v mise >/dev/null; then
-  echo "Installing mise..."
-  curl https://mise.jdx.dev/install.sh | sh
+# Install Xcode Command Line Tools (includes git and make)
+if ! command -v git >/dev/null 2>&1; then
+    echo "Installing Xcode Command Line Tools..."
+    xcode-select --install
+    echo "⚠️  Xcode Command Line Tools installation initiated. Please complete the installation and re-run bootstrap."
+    exit 1
 else
-  echo "Mise is already installed."
+    echo "✅ Git (Xcode Command Line Tools) already installed"
 fi
 
-# Install Rust if not already installed
-if ! command -v rustc >/dev/null; then
-  echo "Installing Rust..."
-  curl https://sh.rustup.rs -sSf | sh -s -- -y
+# Install Homebrew
+install_homebrew_if_missing
+
+# Install essential command-line tools via Homebrew
+echo "Installing essential command-line tools..."
+
+# Core tools from FIXES.md
+install_if_missing "gh" "brew install gh" "GitHub CLI"
+install_if_missing "yadm" "brew install yadm" "YADM (Yet Another Dotfiles Manager)"
+
+# Additional essential tools
+brew_tools=(
+    "bat"       # Better cat
+    "curl"      # HTTP client
+    "eza"       # Better ls
+    "fd"        # Better find
+    "fzf"       # Fuzzy finder
+    "git-delta" # Better git diff
+    "git"       # Git
+    "htop"      # Process viewer
+    "jq"        # JSON processor
+    "ripgrep"   # Better grep
+    "tree"      # Directory tree viewer
+    "wget"      # File downloader
+    "yq"        # YAML processor
+)
+
+for tool in "${brew_tools[@]}"; do
+    install_if_missing "$tool" "brew install $tool" "$tool"
+done
+
+# Install GUI applications via Homebrew Cask
+echo "Installing GUI applications..."
+
+# Applications from FIXES.md
+gui_apps=(
+    "google-chrome" # Chrome browser
+    "warp"          # Warp terminal
+    # "cursor"                      # Cursor editor
+    # "visual-studio-code-insiders" # VSCode Insiders
+)
+
+for app in "${gui_apps[@]}"; do
+    if ! brew list --cask "$app" >/dev/null 2>&1; then
+        echo "Installing ${app}..."
+        if brew install --cask "$app"; then
+            echo "✅ Successfully installed ${app}"
+        else
+            echo "❌ Failed to install ${app}"
+        fi
+    else
+        echo "✅ ${app} already installed"
+    fi
+done
+
+# Install additional useful applications
+additional_apps=(
+    "bitwarden" # Password manager
+    "rectangle" # Window management
+    "raycast"   # Spotlight replacement
+    # "1password"  # Password manager
+    "cleanmymac" # System cleaner
+    "spotify"    # Music streaming
+)
+
+echo "Installing additional useful applications..."
+for app in "${additional_apps[@]}"; do
+    if ! brew list --cask "$app" >/dev/null 2>&1; then
+        echo "Installing ${app}..."
+        if brew install --cask "$app" 2>/dev/null; then
+            echo "✅ Successfully installed ${app}"
+        else
+            echo "⚠️  Skipped ${app} (may not be available or already installed via other means)"
+        fi
+    else
+        echo "✅ ${app} already installed"
+    fi
+done
+
+# Install mise (version manager)
+install_if_missing "mise" "curl https://mise.run | sh" "mise (version manager)"
+
+# Source mise for current session
+if [[ -f "${HOME}/.local/bin/mise" ]]; then
+    export PATH="${HOME}/.local/bin:${PATH}"
+elif [[ -f "${HOME}/.cargo/bin/mise" ]]; then
+    export PATH="${HOME}/.cargo/bin:${PATH}"
+fi
+
+# Install Rust via mise (preferred over rustup for consistency)
+if command -v mise >/dev/null 2>&1; then
+    echo "Installing/updating Rust via mise..."
+    if mise use --global rust@latest; then
+        echo "✅ Rust installed via mise"
+        # Also install cargo-binstall for faster cargo installs
+        if mise use --global --yes cargo-binstall; then
+            echo "✅ cargo-binstall installed"
+        fi
+    else
+        echo "⚠️  Failed to install Rust via mise, falling back to rustup..."
+        install_if_missing "rustc" "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y" "Rust (via rustup)"
+    fi
 else
-  echo "Rust is already installed."
+    # Fallback to rustup if mise isn't available
+    install_if_missing "rustc" "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y" "Rust (via rustup)"
 fi
 
-# Install FZF
-if [[ ! -f ${HOME}/.fzf.zsh ]]; then
-  printf "${YELLOW}%s${NC}\n" "Installing FZF scripts"
-  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-  ~/.fzf/install --no-update-rc --completion --key-bindings
+# Install FZF with shell integrations
+if [[ ! -f "${HOME}/.fzf.zsh" ]]; then
+    echo "Setting up FZF shell integrations..."
+    if brew --prefix fzf >/dev/null 2>&1; then
+        FZF_PATH=$(brew --prefix fzf)
+        if "${FZF_PATH}/install" --no-update-rc --completion --key-bindings; then
+            echo "✅ FZF shell integrations installed"
+        else
+            echo "⚠️  FZF shell integration setup failed"
+        fi
+    fi
+else
+    echo "✅ FZF shell integrations already configured"
 fi
 
-# Mise
-mise use --global --yes cargo-binstall
+# Update Homebrew and cleanup
+echo "Updating Homebrew and cleaning up..."
+brew update && brew upgrade && brew cleanup
+
+echo "🎉 Core software installation completed!"
+echo "📝 Installed applications should now be available in Applications folder and command line tools in PATH"

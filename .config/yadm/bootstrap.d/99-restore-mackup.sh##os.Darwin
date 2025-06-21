@@ -1,3 +1,50 @@
 #!/usr/bin/env bash
 
-# mackup -f restore
+# Mackup Configuration Restore
+# Restores application settings and configurations from cloud storage
+
+set -euo pipefail
+
+# Check if mackup is installed
+if ! command -v mackup >/dev/null 2>&1; then
+    echo "⚠️  Mackup not installed. Installing via Homebrew..."
+    if command -v brew >/dev/null 2>&1; then
+        brew install mackup
+    else
+        echo "❌ Homebrew not available. Skipping mackup setup."
+        exit 0
+    fi
+fi
+
+# Check if mackup configuration exists
+if [[ ! -f "$HOME/.mackup.cfg" ]]; then
+    echo "📋 Creating basic mackup configuration..."
+    cat >"$HOME/.mackup.cfg" <<'EOF'
+[storage]
+engine = icloud
+
+[applications_to_ignore]
+# Add applications you don't want to sync
+# ssh
+EOF
+    echo "✅ Created ~/.mackup.cfg"
+    echo "💡 Edit ~/.mackup.cfg to customize sync settings"
+fi
+
+# Ask user if they want to restore
+echo "🔄 Mackup can restore application settings from cloud storage"
+echo "⚠️  This will overwrite existing application configurations"
+read -p "Do you want to restore configurations? [y/N]: " restore_choice
+
+if [[ "$restore_choice" =~ ^[Yy]$ ]]; then
+    echo "🔄 Restoring configurations with mackup..."
+    if mackup restore; then
+        echo "✅ Mackup restore completed successfully"
+    else
+        echo "❌ Mackup restore failed"
+        exit 1
+    fi
+else
+    echo "⏭️  Skipped mackup restore"
+    echo "💡 You can run 'mackup restore' manually later"
+fi

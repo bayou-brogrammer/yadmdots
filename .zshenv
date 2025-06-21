@@ -1,2 +1,1 @@
-export ZDOTDIR=~/.config/zsh
-[[ -f $ZDOTDIR/.zshenv ]] && . $ZDOTDIR/.zshenv
+/Users/lecoqjacob/Library/Mobile Documents/com~apple~CloudDocs/Mackup/.zshenv

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-GITHUB_USER="bayou-brogrammer"
+GITHUB_USER="HexSleeves"

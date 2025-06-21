@@ -1,28 +1,253 @@
 #!/usr/bin/env bash
 
-# Save this file as ~/.config/yadm/bootstrap and make it executable. It will
-# execute all executable files (excluding templates and editor backups) in the
-# ~/.config/yadm/bootstrap.d directory when run.
+# YADM Bootstrap Script with Enhanced Error Handling and Logging
+# This script executes all bootstrap scripts in the bootstrap.d directory
+# with improved error handling, logging, and recovery options.
 
-set -eu
+set -euo pipefail
 
+# Source common utilities
 source "${HOME}/.config/yadm/scripts/common/all.sh"
 
-# Directory to look for bootstrap executables in
+# Configuration
 BOOTSTRAP_D="${BASH_SOURCE[0]}.d"
+LOG_DIR="${HOME}/.config/yadm/logs"
+LOG_FILE="${LOG_DIR}/bootstrap-$(date +%Y%m%d-%H%M%S).log"
+PROGRESS_FILE="${LOG_DIR}/bootstrap-progress.txt"
+FAILED_SCRIPTS_FILE="${LOG_DIR}/failed-scripts.txt"
 
-if [[ ! -d "${BOOTSTRAP_D}" ]]; then
-  echo "Error: bootstrap directory '${BOOTSTRAP_D}' not found" >&2
-  exit 1
-fi
+# Ensure log directory exists
+mkdir -p "${LOG_DIR}"
 
-find -L "${BOOTSTRAP_D}" \( -type f -or -type l \) -not -name '*##*' -not -name '*~$*' | sort -n |
-  while IFS= read -r bootstrap; do
-    if [[ -x "${bootstrap}" ]]; then
-      printf "${YELLOW}%s${NC}\n" "Executing ${bootstrap} ..."
-      if ! "${bootstrap}"; then
-        echo "Error: bootstrap '${bootstrap}' failed" >&2
-        exit 1
-      fi
+# Initialize log file
+{
+    echo "YADM Bootstrap Started: $(date)"
+    echo "Platform: $(uname -s)"
+    echo "Architecture: $(uname -m)"
+    echo "User: $(whoami)"
+    echo "YADM Class: $(yadm config local.class 2>/dev/null || echo 'Not set')"
+    echo "==============================================="
+} >"${LOG_FILE}"
+
+# Logging functions
+log() {
+    local level="$1"
+    shift
+    local message="$*"
+    local timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+    echo "[${timestamp}] [${level}] ${message}" | tee -a "${LOG_FILE}"
+}
+
+log_info() { log "INFO" "$@"; }
+log_warn() { log "WARN" "$@"; }
+log_error() { log "ERROR" "$@"; }
+log_success() { log "SUCCESS" "$@"; }
+
+# Progress tracking
+update_progress() {
+    local current="$1"
+    local total="$2"
+    local script_name="$3"
+    local status="$4"
+
+    echo "${current}/${total} - ${script_name} - ${status}" >"${PROGRESS_FILE}"
+    printf "${CYAN}[%d/%d]${NC} %s - ${YELLOW}%s${NC}\n" "$current" "$total" "$script_name" "$status"
+}
+
+# Check if script requires user interaction
+is_interactive_script() {
+    local script_path="$1"
+
+    # Check if script contains interactive prompts
+    if grep -q "read -p\|read -r.*-p\|select\|whiptail\|dialog" "$script_path" 2>/dev/null; then
+        return 0 # Interactive
     fi
-  done
+
+    # Check for specific interactive scripts by name
+    case "$(basename "$script_path")" in
+    *machine-class* | *app-store* | *security* | *shell-setup* | *development-setup*)
+        return 0 # Interactive
+        ;;
+    *)
+        return 1 # Non-interactive
+        ;;
+    esac
+}
+
+# Script execution function
+execute_script() {
+    local script_path="$1"
+    local script_name=$(basename "$script_path")
+    local temp_log="${LOG_DIR}/temp-${script_name}.log"
+
+    log_info "Starting execution of ${script_name}"
+
+    # Check if script is interactive
+    if is_interactive_script "$script_path"; then
+        printf "${CYAN}%s${NC}\n" "🔄 Running interactive script: ${script_name}"
+        printf "${YELLOW}%s${NC}\n" "   This script may prompt for user input..."
+        echo
+
+        # Execute interactively with tee to capture output while showing it
+        if "${script_path}" 2>&1 | tee "${temp_log}"; then
+            log_success "Successfully completed ${script_name}"
+            # Append temp log to main log
+            echo "--- Output from ${script_name} ---" >>"${LOG_FILE}"
+            cat "${temp_log}" >>"${LOG_FILE}"
+            echo "--- End output from ${script_name} ---" >>"${LOG_FILE}"
+            rm -f "${temp_log}"
+            return 0
+        else
+            local exit_code=${PIPESTATUS[0]}
+            log_error "Failed to execute ${script_name} (exit code: ${exit_code})"
+            echo "--- Error output from ${script_name} ---" >>"${LOG_FILE}"
+            cat "${temp_log}" >>"${LOG_FILE}"
+            echo "--- End error output from ${script_name} ---" >>"${LOG_FILE}"
+            rm -f "${temp_log}"
+
+            # Add to failed scripts list
+            echo "${script_path}" >>"${FAILED_SCRIPTS_FILE}"
+            return $exit_code
+        fi
+    else
+        # Execute non-interactive script with output capture
+        if "${script_path}" >"${temp_log}" 2>&1; then
+            log_success "Successfully completed ${script_name}"
+            # Append temp log to main log
+            echo "--- Output from ${script_name} ---" >>"${LOG_FILE}"
+            cat "${temp_log}" >>"${LOG_FILE}"
+            echo "--- End output from ${script_name} ---" >>"${LOG_FILE}"
+            rm -f "${temp_log}"
+            return 0
+        else
+            local exit_code=$?
+            log_error "Failed to execute ${script_name} (exit code: ${exit_code})"
+            echo "--- Error output from ${script_name} ---" >>"${LOG_FILE}"
+            cat "${temp_log}" >>"${LOG_FILE}"
+            echo "--- End error output from ${script_name} ---" >>"${LOG_FILE}"
+            rm -f "${temp_log}"
+
+            # Add to failed scripts list
+            echo "${script_path}" >>"${FAILED_SCRIPTS_FILE}"
+            return $exit_code
+        fi
+    fi
+}
+
+# Handle script failures
+handle_failure() {
+    local script_path="$1"
+    local script_name=$(basename "$script_path")
+
+    printf "${RED}%s${NC}\n" "❌ Script failed: ${script_name}"
+    printf "${YELLOW}%s${NC}\n" "Options:"
+    printf "${CYAN}%s${NC}\n" "  [c] Continue with next script"
+    printf "${CYAN}%s${NC}\n" "  [r] Retry this script"
+    printf "${CYAN}%s${NC}\n" "  [s] Skip this script"
+    printf "${CYAN}%s${NC}\n" "  [q] Quit bootstrap"
+
+    while true; do
+        read -p "Choose an option [c/r/s/q]: " choice
+        case $choice in
+        [Cc]*)
+            log_warn "Continuing despite failure in ${script_name}"
+            return 0
+            ;;
+        [Rr]*)
+            log_info "Retrying ${script_name}"
+            if execute_script "$script_path"; then
+                return 0
+            else
+                handle_failure "$script_path"
+                return $?
+            fi
+            ;;
+        [Ss]*)
+            log_warn "Skipping ${script_name}"
+            return 0
+            ;;
+        [Qq]*)
+            log_error "Bootstrap aborted by user"
+            return 1
+            ;;
+        *)
+            echo "Please answer c, r, s, or q."
+            ;;
+        esac
+    done
+}
+
+# Main execution
+main() {
+    log_info "Starting YADM bootstrap process"
+
+    # Check if bootstrap directory exists
+    if [[ ! -d "${BOOTSTRAP_D}" ]]; then
+        log_error "Bootstrap directory '${BOOTSTRAP_D}' not found"
+        exit 1
+    fi
+
+    # Get list of executable scripts (excluding templates and backups)
+    mapfile -t scripts < <(find -L "${BOOTSTRAP_D}" \( -type f -or -type l \) -perm +111 -not -name '*##*' -not -name '*~$*' | sort -V)
+
+    if [[ ${#scripts[@]} -eq 0 ]]; then
+        log_warn "No executable bootstrap scripts found"
+        exit 0
+    fi
+
+    local total_scripts=${#scripts[@]}
+    local current_script=1
+    local failed_count=0
+
+    log_info "Found ${total_scripts} bootstrap scripts to execute"
+
+    # Clear previous progress and failed scripts
+    >"${PROGRESS_FILE}"
+    >"${FAILED_SCRIPTS_FILE}"
+
+    # Execute each script
+    for script in "${scripts[@]}"; do
+        local script_name=$(basename "$script")
+
+        update_progress "$current_script" "$total_scripts" "$script_name" "RUNNING"
+
+        if execute_script "$script"; then
+            update_progress "$current_script" "$total_scripts" "$script_name" "SUCCESS"
+            printf "${GREEN}%s${NC}\n" "✅ Completed: ${script_name}"
+        else
+            update_progress "$current_script" "$total_scripts" "$script_name" "FAILED"
+
+            if ! handle_failure "$script"; then
+                log_error "Bootstrap process aborted"
+                exit 1
+            fi
+
+            ((failed_count++))
+        fi
+
+        ((current_script++))
+    done
+
+    # Final summary
+    echo
+    printf "${BOLD}%s${NC}\n" "🎉 Bootstrap process completed!"
+    printf "${GREEN}%s${NC}\n" "✅ Successful scripts: $((total_scripts - failed_count))"
+
+    if [[ $failed_count -gt 0 ]]; then
+        printf "${YELLOW}%s${NC}\n" "⚠️  Failed/Skipped scripts: ${failed_count}"
+        printf "${CYAN}%s${NC}\n" "📋 Check failed scripts: ${FAILED_SCRIPTS_FILE}"
+    fi
+
+    printf "${CYAN}%s${NC}\n" "📝 Full log available: ${LOG_FILE}"
+
+    # Clean up progress file
+    rm -f "${PROGRESS_FILE}"
+
+    log_info "Bootstrap process completed with ${failed_count} failures"
+}
+
+# Trap to handle interrupts
+trap 'log_error "Bootstrap interrupted by user"; exit 1' INT TERM
+
+# Execute main function
+main "$@"

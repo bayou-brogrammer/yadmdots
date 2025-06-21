@@ -1,6 +1,64 @@
 #!/usr/bin/env bash
 
-if [ -z "$(yadm config --get local.class)" ]; then
-  printf "${RED}%s${NC}\n" "Configure machine class using 'yadm config local.class CLASS' (where CLASS is Personal or Work) and run 'yadm bootstrap' again. Aborting!"
-  exit 1
+# Machine Class Configuration Script
+# Ensures that a machine class is set before proceeding with bootstrap
+
+set -euo pipefail
+
+# Check if machine class is already configured
+current_class="$(yadm config local.class 2>/dev/null || echo '')"
+
+if [[ -n "$current_class" ]]; then
+    echo "✅ Machine class already set to: ${current_class}"
+    exit 0
+fi
+
+# Interactive class selection
+echo "🔧 Machine class not configured. Please select your machine type:"
+echo ""
+echo "Available classes:"
+echo "  1) Personal - Personal development machine"
+echo "  2) Work     - Work/corporate machine"
+echo ""
+
+while true; do
+    read -p "Select machine class [1-2]: " choice
+    case $choice in
+        1|personal|Personal)
+            selected_class="Personal"
+            break
+            ;;
+        2|work|Work)
+            selected_class="Work"
+            break
+            ;;
+        *)
+            echo "❌ Invalid selection. Please choose 1 or 2."
+            ;;
+    esac
+done
+
+# Set the machine class
+if yadm config local.class "$selected_class"; then
+    echo "✅ Machine class set to: ${selected_class}"
+    
+    # Provide information about what this means
+    echo ""
+    echo "📋 Class configuration applied:"
+    case $selected_class in
+        "Personal")
+            echo "  - System updates will be installed automatically"
+            echo "  - Full application suite will be installed"
+            echo "  - Personal dotfiles and configurations will be applied"
+            ;;
+        "Work")
+            echo "  - System updates will be skipped (managed by IT)"
+            echo "  - Work-appropriate applications will be installed"
+            echo "  - Work-specific configurations will be applied"
+            ;;
+    esac
+    echo ""
+else
+    echo "❌ Failed to set machine class"
+    exit 1
 fi

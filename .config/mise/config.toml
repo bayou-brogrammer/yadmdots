@@ -1,8 +1,12 @@
 [tools]
 bun = "latest"
 cargo-binstall = "latest"
+deno = "latest"
 go = "latest"
 neovim = "latest"
+node = "lts"
+python = "latest"
+rust = "latest"
 yamlfmt = "latest"
 
 [settings]
