@@ -1,0 +1,19 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "autoshare": false,
+  "autoupdate": true,
+  "provider": {
+    "vercel": {
+      "name": "Vercel",
+      "env": ["V0_API_KEY", "VERCEL_API_KEY"],
+      "options": {
+        "baseURL": "https://api.v0.dev/v1"
+      },
+      "models": {
+        "v0-1.0-md": {
+          "name": "v0-1.0-md"
+        }
+      }
+    }
+  }
+}

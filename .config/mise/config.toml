@@ -6,8 +6,11 @@ go = "latest"
 neovim = "latest"
 node = "lts"
 python = "latest"
-rust = "latest"
+# rust = "latest"
 yamlfmt = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
+
+[tools.rust]
+version = "nightly"

@@ -1,1 +1,1 @@
-/Users/lecoqjacob/Library/Mobile Documents/com~apple~CloudDocs/Mackup/.zshenv
+/Users/lecoqjacob/Library/CloudStorage/Dropbox/Mackup/.zshenv
